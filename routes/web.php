@@ -7,5 +7,5 @@ Route::get('/', function () {
 });
 
 Route::get('/hello',function(){
-    return 'hello word';
-})
+    return view('hello word');
+});
