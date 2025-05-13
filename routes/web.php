@@ -1,11 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PresenceController;
 
 Route::get('/', function () {
     return view('pages.index');
 })->name('home');
 
-Route::get('/hello',function(){
-    return view('hello word');
-});
+Route::resource('presence', PresenceController::class);
