@@ -10,7 +10,7 @@
                         Daftar Kegiatan
                     </h4>
                     </div>
-                    <div class="col">
+                    <div class="col text-end">
                         <a href="" class="btn btn-primary">Tambah Kegiatan</a>
                     </div>
                 </div>

@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{env('APP_NAME')}}</title>
+    <title>{{ config('app.name') }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
   </head>
   <body>
     <nav class="navbar shadowm-sm navbar-expand-lg bg-body-tertiary">
         <div class="container">
-            <a class="navbar-brand" href="{{route('home')}}">{{env('APP_NAME')}}</a>
+            <a class="navbar-brand" href="{{route('home')}}">{{ config('app.name') }}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -19,7 +19,7 @@
                 <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Daftar Absensi</a>
+                <a class="nav-link" href="{{ route('presence.index') }}">Daftar Absensi</a>
                 </li>
 
             </ul>
