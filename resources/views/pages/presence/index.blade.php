@@ -11,7 +11,7 @@
                     </h4>
                     </div>
                     <div class="col text-end">
-                        <a href="" class="btn btn-primary">Tambah Kegiatan</a>
+                        <a href="{{route('presence.create')}}" class="btn btn-primary">Tambah Data</a>
                     </div>
                 </div>
                 
