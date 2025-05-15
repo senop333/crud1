@@ -17,23 +17,29 @@
                 
             </div>
             <div class="card-body">
-              <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Kegiatan</th>
-                        <th>Tanggal Kegiatan</th>
-                        <th>Waktu Mulai</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                    </tr>
-                </tbody>
-              </table>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Kegiatan</th>
+                            <th>Tanggal Kegiatan</th>
+                            <th>Waktu Mulai</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($presences as $presence)
+                            <tr>
+                                <td>{{ $loop->iteration}}</td>
+                                <td>{{ $presence->nama_kegiatan }}</td>
+                                <td>{{ date('d-m-Y', strtotime($presence->tgl_kegiatan)) }}</td>  <!-- Format tanggal -->
+                                <td>{{ date('H:i', strtotime($presence->tgl_kegiatan)) }}</td>    <!-- Format waktu -->
+                                <td></td>
+                            </tr>
+                        @endforeach
+                    </tbody> 
+                </table>
             </div>
-        </div>
+        </div> 
     </div>
 @endsection

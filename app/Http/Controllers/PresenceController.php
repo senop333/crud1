@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Presence; 
+use Illuminate\Support\Str;
 
 class PresenceController extends Controller
 {
@@ -11,7 +13,8 @@ class PresenceController extends Controller
      */
     public function index()
     {
-        return view('pages.presence.index');
+        $presences = Presence::all();
+        return view('pages.presence.index', compact('presences'));
     }
 
     /**
@@ -32,7 +35,24 @@ class PresenceController extends Controller
             'tgl_kegiatan' => 'required',
             'waktu_mulai' => 'required'
         ]);
-        dd($request->all());
+
+        //dd($request->all());
+        $data =[
+            'nama_kegiatan' => $request->nama_kegiatan,
+            'slug' => Str::slug($request->nama_kegiatan),
+            'tgl_kegiatan' => $request->tgl_kegiatan.' '.$request->waktu_mulai,
+        ];
+        
+        //dd($data);
+
+        /** 
+        presence::create([
+            'nama_kegiatan' => $request->nama_kegiatan,
+            'tgl_kegiatan' => $request->tgl_kegiatan.' '.$request->waktu_mulai,       
+        ]); **/
+
+        Presence::create($data);
+        return redirect()->route('presence.index')->with('success', 'Data berhasil disimpan');
     }
 
     /**
