@@ -28,6 +28,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            {{ $message }}
+                        </div>
+                    @endif
+                        @if ($presences->isEmpty())
+                            <tr>
+                                <td colspan="5" class="text-center">Tidak ada data</td>
+                            </tr>
+                        @endif
                         @foreach ($presences as $presence)
                             <tr>
                                 <td>{{ $loop->iteration}}</td>
