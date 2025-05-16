@@ -34,7 +34,15 @@
                                 <td>{{ $presence->nama_kegiatan }}</td>
                                 <td>{{ date('d-m-Y', strtotime($presence->tgl_kegiatan)) }}</td>  <!-- Format tanggal -->
                                 <td>{{ date('H:i', strtotime($presence->tgl_kegiatan)) }}</td>    <!-- Format waktu -->
-                                <td></td>
+                                <td>
+                                    <a href="{{ route('presence.show', $presence->id) }}" class="btn btn-info btn-sm">Detail</a>
+                                    <a href="{{ route('presence.edit', $presence->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    <form action="{{ route('presence.destroy', $presence->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody> 
