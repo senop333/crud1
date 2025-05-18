@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Presence; 
 use Illuminate\Support\Str;
+use App\Models\PresenceDetail;
 
 class PresenceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
+
     public function index()
     {
         $presences = Presence::all();
@@ -54,7 +54,9 @@ class PresenceController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $presence = Presence::findOrFail($id);
+        $presenceDetails = PresenceDetail::where('presence_id', $id)->get();
+        return view('pages.presence.detail.index', compact('presence', 'presenceDetails'));
     }
 
     /**
