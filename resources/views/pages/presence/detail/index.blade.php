@@ -11,7 +11,7 @@
                     </h4>
                     </div>
                     <div class="col text-end">
-                        <a href="{{route('presence.index')}}" class="btn btn-warning">Copy Link</a>
+                        <button type="button" onclick="copyLink()" class="btn btn-warning">Copy Link</button>
                         <a href="{{route('presence.index')}}" class="btn btn-danger">Export to PDF</a>
                         <a href="{{route('presence.index')}}" class="btn btn-secondary">Kembali</a>
                     </div>
@@ -50,7 +50,7 @@
                 <tbody>
                      @if ($presenceDetails->isEmpty())
                             <tr>
-                                <td colspan="5" class="text-center">Tidak ada data</td>
+                                <td colspan="6" class="text-center">Tidak ada data</td>
                             </tr>
                      @endif
                     @foreach ($presenceDetails as $detail)
@@ -78,3 +78,17 @@
         </div> 
     </div>
 @endsection
+
+@push('js')
+    <script>
+       function copyLink() {
+            // Get the current URL
+            navigator.clipboard.writeText("{{route('absen.index', $presence->slug)}}");
+
+            // Show an alert or notification to indicate that the link has been copied
+            alert("Link telah disalin ke clipboard: " + "{{route('absen.index', $presence->slug)}}");
+        }
+     
+    </script>
+    
+@endpush
