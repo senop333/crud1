@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
   </head>
   <body>
-<div class="container my=5" >
+<div class="container my-5" >
 
 <div class="card mb-4">
     <div class="card-body">
@@ -33,13 +33,34 @@
 
     </div>
 </div>
-<div class="card">
-    <card-header>
-        <h4 class="card-header">Form Absen</h4>
-    </card-header>
-    <div class="card-body">
-
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <card-header>
+                <h4 class="card-header">Form Absen</h4>
+                </card-header>
+            <div class="card-body">
+                <form action="">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="nama" class="form-label">Nama</label>
+                        <input type="text" class="form-control" id="nama" name="nama" required>
+                    </div>                    
+                    <button type="submit" class="btn btn-primary">Absen</button>
+                </form>
+            </div>
+        </div>
     </div>
+    <div class="col-md">
+        <div class="card">
+        <card-header>
+            <h4 class="card-header">Daftar Absen</h4>
+        </card-header>
+        <div class="card-body">
+
+        </div>
+    </div>
+</div>
 </div>
 </div>
 
