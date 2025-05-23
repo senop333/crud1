@@ -10,8 +10,10 @@
 <div class="container my-5" >
 
 <div class="card mb-4">
+    <div class="card-header">
+        <h4 class="text-center">{{ config('app.name') }}</h4>
+    </div>
     <div class="card-body">
-    <h4 class="text-center">{{ config('app.name') }}</h4>
         <table class="table table-boderless">
                     <tr>
                         <td width="150">Nama Kegiatan</td>
@@ -40,12 +42,29 @@
                 <h4 class="card-header">Form Absen</h4>
                 </card-header>
             <div class="card-body">
-                <form action="">
+                <form action=" {{ route('absen.save') }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama" required>
-                    </div>                    
+                        <input type="text" class="form-control" id="nama" name="nama">
+                        @error('nama')
+                            <div class="text-danger">{{ $message }}</div>                       
+                        @enderror                     
+                    </div>   
+                    <div class="mb-3">
+                        <label for="jabatan" class="form-label">Jabatan</label>
+                        <input type="text" class="form-control" id="jabatan" name="jabatan">
+                        @error('jabatan')
+                            <div class="text-danger">{{ $message }}</div>                       
+                        @enderror                     
+                    </div>
+                    <div class="mb-3">
+                        <label for="asal_instansi" class="form-label">Jabatan</label>
+                        <input type="text" class="form-control" id="asal_instansi" name="Asal_instansi">
+                        @error('asal_instansi')
+                            <div class="text-danger">{{ $message }}</div>                       
+                        @enderror                     
+                    </div>          
                     <button type="submit" class="btn btn-primary">Absen</button>
                 </form>
             </div>
@@ -54,7 +73,7 @@
     <div class="col-md">
         <div class="card">
         <card-header>
-            <h4 class="card-header">Daftar Absen</h4>
+            <h4 class="card-header">Daftar Kehadiran</h4>
         </card-header>
         <div class="card-body">
 
@@ -65,5 +84,6 @@
 </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
-  </body>
+    <script src="{{asset('js/signature.min.js')}}"></script>
+</body>
 </html>

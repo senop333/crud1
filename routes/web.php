@@ -15,3 +15,4 @@ Route::delete('presence-detail/{id}', [PresenceDetailController::class, 'destroy
 
 //public
 Route::get('absen/{slug}', [AbsenController::class, 'index'])->name('absen.index');
+Route::post('absen/save', [AbsenController::class, 'save'])->name('absen.save');

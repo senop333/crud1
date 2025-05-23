@@ -12,4 +12,15 @@ class AbsenController extends Controller
         $presence = Presence::where('slug', $slug)->first();
         return view('pages.absen.index', compact('presence'));
     }
+
+    public function save(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required',
+            'jabatan' => 'required',
+            'asal_instansi' => 'required'
+
+        ]);
+        dd($request->all());
+    }
 }
