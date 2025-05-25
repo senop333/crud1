@@ -46,21 +46,21 @@
                     @csrf
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama">
+                        <input type="text" class="form-control" id="nama" name="nama" value="{{old('nama')}}">
                         @error('nama')
                             <div class="text-danger">{{ $message }}</div>                       
                         @enderror                     
                     </div>   
                     <div class="mb-3">
                         <label for="jabatan" class="form-label">Jabatan</label>
-                        <input type="text" class="form-control" id="jabatan" name="jabatan">
+                        <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ old('jabatan') }}">
                         @error('jabatan')
                             <div class="text-danger">{{ $message }}</div>                       
                         @enderror                     
                     </div>
                     <div class="mb-3">
                         <label for="asal_instansi" class="form-label">Asal Instansi</label>
-                        <input type="text" class="form-control" id="asal_instansi" name="asal_instansi">
+                        <input type="text" class="form-control" id="asal_instansi" name="asal_instansi" value="{{old('asal_instansi')}}">
                         @error('asal_instansi')
                             <div class="text-danger">{{ $message }}</div>                       
                         @enderror                     
@@ -111,14 +111,9 @@
                             <td>{{ $detail->asal_instansi }}</td>
                             <td>
                                     @if ($detail->tanda_tangan)
-                                        
-
-                                    <img src="{{ asset('storage/' . $detail->tanda_tangan) }}" alt="tanda_tangan" style="width: 100px; height: auto;">
-
-                                   
-                                   
-                                   
-                                        @else
+                                        <!-- Display tanda tangan if it exists -->
+                                        <img src="{{ asset('storage/public_upload/' . $detail->tanda_tangan) }}" alt="tanda_tangan" style="width: 100px; height: auto;">
+                                    @else
                                         Tidak ada tanda tangan
                                     @endif
 

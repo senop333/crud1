@@ -59,10 +59,14 @@
                             <td>{{ $detail->nama }}</td>
                             <td>{{ $detail->jabatan }}</td>
                             <td>{{ $detail->asal_instansi }}</td>
-                            <td>{{ $detail->tanda_tangan }}</td>
-
-
-
+                            <td>
+                                    @if ($detail->tanda_tangan)
+                                    <!-- Display tanda tangan if it exists -->
+                                    <img src="{{ asset('storage/public_upload/' . $detail->tanda_tangan) }}" alt="tanda_tangan" style="width: 100px; height: auto;">
+                                        @else
+                                        Tidak ada tanda tangan
+                                    @endif
+                            </td>
                             <td>
                                 <form action="{{ route('presence-detail.destroy', $presence->id) }}" method="POST" style="display:inline;">
                                     @csrf
