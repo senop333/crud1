@@ -42,7 +42,7 @@
                 <h4 class="card-header">Form Absen</h4>
                 </card-header>
             <div class="card-body">
-                <form action=" {{ route('absen.save') }}" method="POST">
+                <form id="form-absen" action=" {{ route('absen.save', $presence->id) }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
@@ -70,14 +70,14 @@
                         <div class="db-block form-control mb-2">
                             <canvas id="signature-pad" class="signature-pad">
                             </canvas>
-                            <textarea name="signature" id="signature64" class=""></textarea>
+                            <textarea name="signature" id="signature64" class="d-none"></textarea>
                         </div>
                         @error('signature')
-                            <div class="text-danger">{{ $message }}</div>
-                            
+                            <div class="text-danger">{{ $message }}</div> 
                         @enderror
+                        <button class="button" id="clear" class="btn btn-sm btn-secondary">Clear</button>
                     </div>           
-                    <button type="submit" class="btn btn-primary">Absen</button>
+                    <button type="submit" class="btn btm-sm btn-primary">Absen</button>
                 </form>
             </div>
         </div>
@@ -88,6 +88,45 @@
             <h4 class="card-header">Daftar Kehadiran</h4>
         </card-header>
         <div class="card-body">
+                         <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Jabatan</th>
+                        <th>Asal Instansi</th>
+                        <th>Tanda Tangan</th>
+                    </tr>
+                </thead>
+                                 @if ($presenceDetails->isEmpty())
+                            <tr>
+                                <td colspan="5" class="text-center">Tidak ada data</td>
+                            </tr>
+                     @endif
+                    @foreach ($presenceDetails as $detail)
+                        <tr>
+                            <td>{{ $loop->iteration}}</td>
+                            <td>{{ $detail->nama }}</td>
+                            <td>{{ $detail->jabatan }}</td>
+                            <td>{{ $detail->asal_instansi }}</td>
+                            <td>
+                                    @if ($detail->tanda_tangan)
+                                        
+
+                                    <img src="{{ asset('storage/' . $detail->tanda_tangan) }}" alt="tanda_tangan" style="width: 100px; height: auto;">
+
+                                   
+                                   
+                                   
+                                        @else
+                                        Tidak ada tanda tangan
+                                    @endif
+
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
 
         </div>
     </div>
@@ -129,6 +168,23 @@
                 const dataURL = signaturePad.toDataURL();
                 $textarea.val(dataURL);
             }
+            });
+
+            // Tombol clear
+            $('#clear').on('click', function (e) {
+                e.preventDefault();
+                signaturePad.clear();
+                $textarea.val(''); // Kosongkan textarea
+            });
+
+            $('form-absen').on('submit', function (e) {
+                e.preventDefault(); // Mencegah submit default
+                if (signaturePad.isEmpty()) {
+                    alert('Silakan tanda tangani sebelum mengirim.');
+                    return;
+                }
+                // Jika sudah ada tanda tangan, kirim form
+                this.submit();
             });
         });
         </script>
